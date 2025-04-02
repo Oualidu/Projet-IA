@@ -49,8 +49,7 @@ def fitness():# calcule la distance totale parcourue en suivant le chemin repré
     xy=np.column_stack((x[chemin],y[chemin])) # Cette ligne crée un tableau bidimensionnel où chaque ligne représente les coordonnées (x, y) d'une ville dans l'ordre défini par le chemin actuel. La fonction np.column_stack() est utilisée pour empiler les tableaux x et y sur les colonnes, de sorte que chaque colonne contienne les coordonnées (x, y) d'une ville.
     distance=np.sum(np.sqrt(np.sum((xy- np.roll(xy,-1,axis=0))**2,axis=1))) # alcule la distance totale parcourue en suivant le chemin défini par les indices de la variable chemin. Elle utilise la fonction np.roll() pour décaler les éléments du tableau xy d'une position vers le haut, de sorte que la première ville visite la deuxième, la deuxième visite la troisième, et ainsi de suite. Ensuite, elle calcule la distance entre chaque paire de villes consécutives, puis somme ces distances pour obtenir la distance totale parcourue.
     return distance # la distance totale calculée comme mesure de fitness de l'individu.
-"""J'ai défini une fonction pour calculer la distance entre deux villes. 
-J'ai utilisé une formule de distance, telle que la distance euclidienne 
+"""J'ai défini une fonction pour calculer la distance entre deux villes.  
 dans un espace bidimensionnel, car mes villes sont représentées par des coordonnées.
 J'ai utilisé cette fonction pour calculer la distance totale parcourue par chaque individu dans la population.
 J'ai noté que plus la distance est courte, meilleure est la fitness de l'individu. J'ai donc inversé la distance 
@@ -95,3 +94,15 @@ for i in range(0,M,1) : # iterer avec i de 0 a M en avancant de 1
         chemin[j]= population[i][j]
         d=fitness()
     print('chromosome numero ',i+1, population[i],'fitness = ', d)
+
+
+
+
+    # Calcul de fitness_population
+print('\n\n\n           la FITNESS DE MA POPULATION INITIAL : \n\n\n  ')
+fitness_population = []
+for individu in population:
+    chemin = individu
+    d = fitness()
+    fitness_population.append(d) #  je stocke ces résultats dans une liste appelée fitness_population
+print(fitness_population) #test pour voir la fitness de la population
